@@ -32,5 +32,3 @@ format then call `:FormatTable`
 ## Todo
 
 - Error handling if a bad table is passed in.
-- Vimdocs.
-- Refactor the functions out of the init.lua file.

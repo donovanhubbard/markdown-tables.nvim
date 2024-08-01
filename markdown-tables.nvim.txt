@@ -1,0 +1,9 @@
+================================================================================
+INTRODUCTION                                              *markdown-tables.nvim*
+
+markdown-tables.nvim is a plugin to generate beautiful markdown tables.
+
+markdown-tables.nvim.FormatTable {range}        markdown-tables.nvim.FormatTable
+    Formats a markdown table. The table must be reasonably complete and
+    delimited with the '|' character. Select the table and pass it to the
+    function as a range.
