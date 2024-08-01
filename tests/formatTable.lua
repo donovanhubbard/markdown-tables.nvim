@@ -18,8 +18,7 @@ local function splitStringOnNewlines(str)
     return result
 end
 
-describe("some basics", function()
-
+describe("Happy Path", function()
   it("should succeed with table 1", function()
     local wrongText = readFileSync('./tests/fixtures/table-1-wrong.md')
     local wrongLines = splitStringOnNewlines(wrongText)
@@ -36,5 +35,4 @@ describe("some basics", function()
     local rightLines = splitStringOnNewlines(rightText)
     assert.are.same(rightLines,result)
   end)
-
 end)

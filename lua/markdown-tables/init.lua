@@ -34,13 +34,16 @@ local function renderTable(array)
   return content
 end
 
+local function trim(str)
+  return str:match("^%s*(.-)%s*$")
+end
+
 local function getMaxWidth(array, col)
   local maxWidth = 0
   for _, v in pairs(array) do
     local cell = v[col]
-    local trimmedCell = cell:gsub("%s+","")
+    local trimmedCell = trim(cell)
     local size = trimmedCell:len()
-
     if trimmedCell:sub(1,1) ~= '-' then
       if size > maxWidth then
         maxWidth = size
@@ -54,7 +57,7 @@ local function formatColumn(array, col)
   local maxWidth = getMaxWidth(array, col)
   for _, v in pairs(array) do
     local cell = v[col]
-    local trimmedCell = cell:gsub("%s+","")
+    local trimmedCell = trim(cell)
 
     if trimmedCell:sub(1,1) == '-' then
       local border = ""
