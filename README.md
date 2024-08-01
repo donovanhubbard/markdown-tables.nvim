@@ -7,3 +7,4 @@ A neo vim plugin for formatting markdown tables
 - Error handling if a bad table is passed in.
 - Vimdocs.
 - README doc.
+- Refactor the functions out of the init.lua file.
