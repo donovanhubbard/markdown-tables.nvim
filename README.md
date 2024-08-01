@@ -6,6 +6,7 @@ format them correctly.
 markdown-tables.nvim will format them for you. Just
 select the text and call the command.
 
+https://github.com/user-attachments/assets/b352768b-8363-4bdc-a1b0-131274586c5c
 
 ## Installation
 
