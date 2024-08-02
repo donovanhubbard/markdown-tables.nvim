@@ -35,6 +35,9 @@ local function renderTable(array)
 end
 
 local function trim(str)
+  if str == nil then
+    return nil
+  end
   return str:match("^%s*(.-)%s*$")
 end
 
@@ -43,10 +46,12 @@ local function getMaxWidth(array, col)
   for _, v in pairs(array) do
     local cell = v[col]
     local trimmedCell = trim(cell)
-    local size = trimmedCell:len()
-    if trimmedCell:sub(1,1) ~= '-' then
-      if size > maxWidth then
-        maxWidth = size
+    if trimmedCell ~= nil then
+      local size = trimmedCell:len()
+      if trimmedCell:sub(1,1) ~= '-' then
+        if size > maxWidth then
+          maxWidth = size
+        end
       end
     end
   end
@@ -58,6 +63,9 @@ local function formatColumn(array, col)
   for _, v in pairs(array) do
     local cell = v[col]
     local trimmedCell = trim(cell)
+    if trimmedCell == nil then
+      trimmedCell = ""
+    end
 
     if trimmedCell:sub(1,1) == '-' then
       local border = ""
@@ -70,7 +78,6 @@ local function formatColumn(array, col)
     local paddedCell = padString(trimmedCell,1,maxWidth-trimmedCell:len()+1)
     v[col]=paddedCell
   end
-
 end
 
 
