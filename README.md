@@ -33,6 +33,3 @@ markdown-tables.nvim offers it's functionality through a single
 command, `:FormatTable`. First, select the table you want to 
 format then call `:FormatTable`
 
-## Todo
-
-- Error handling if a bad table is passed in.
