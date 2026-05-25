@@ -7,9 +7,7 @@ markdown-tables.nvim will format them for you. Just
 select the text and call the command.
 
 
-
 https://github.com/user-attachments/assets/17fd2377-5317-48fb-a5eb-1b0b3f6f54dc
-
 
 
 ## Installation
@@ -20,12 +18,14 @@ https://github.com/user-attachments/assets/17fd2377-5317-48fb-a5eb-1b0b3f6f54dc
 
 return {
   'donovanhubbard/markdown-tables.nvim',
-  lazy = false,
-  keys = {
+  name = "markdown-tables.nvim",
+  ft = "markdown", -- only load on markdown files
+  keys = { -- the plugin does not set any keymaps by default
     vim.keymap.set("v", "<leader>ft", ":FormatTable<CR>"),
   }
 }
 ```
+
 
 ## Usage
 
