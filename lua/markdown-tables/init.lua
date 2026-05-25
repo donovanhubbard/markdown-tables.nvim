@@ -80,23 +80,23 @@ local function formatColumn(array, col)
   end
 end
 
+local function formatRange(content)
+  local array = build2DArray(content)
+
+  local numOfCol = #array[1]
+
+  for i=1, numOfCol, 1 do
+    formatColumn(array, i)
+  end
+
+  return renderTable(array)
+end
 
 local M = {
-  _formatRange = function(content)
-    local array = build2DArray(content)
-
-    local numOfCol = #array[1]
-
-    for i=1, numOfCol, 1 do
-      formatColumn(array, i)
-    end
-
-    return renderTable(array)
-  end,
   FormatTable = function(args)
     local buffer = vim.api.nvim_get_current_buf()
     local lines = vim.api.nvim_buf_get_lines(buffer,args.line1-1,args.line2, false)
-    local content =  M._formatRange(lines)
+    local content =  formatRange(lines)
 
     vim.api.nvim_buf_set_lines(buffer,args.line1-1,args.line2,false,content)
   end,
