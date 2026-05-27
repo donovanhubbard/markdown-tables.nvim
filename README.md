@@ -33,3 +33,16 @@ markdown-tables.nvim offers it's functionality through a single
 command, `:FormatTable`. First, select the table you want to 
 format then call `:FormatTable`
 
+
+## Development
+
+The tests are written using the dependency mini.nvim. Run the makefile to download it.
+```
+make deps/mini.nvim
+```
+ To test run 
+ ```
+ make test
+ ```
+This is an excellent resource on how to perform testing.
+ https://nvim-mini.org/mini.nvim/TESTING
