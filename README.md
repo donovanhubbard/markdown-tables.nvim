@@ -21,9 +21,9 @@ https://github.com/user-attachments/assets/74caf750-051b-46a7-a1c9-9d9e021b5580
 
 markdown-tables.nvim offers it's functionality through several commands.
 
-`:CreateMarkdownTable` - Converts the selection to a pretty markdown table
-`:CreateCSVTable` - Converts the selection to a csv
-`:CreateTSVTable` - Converts the selection to a tsv
+- `:CreateMarkdownTable` - Converts the selection to a pretty markdown table
+- `:CreateCSVTable` - Converts the selection to a csv
+- `:CreateTSVTable` - Converts the selection to a tsv
 
 The text you are trying to modify must be either a valid markdown table, csv, or tsv.
 
