@@ -6,12 +6,16 @@ format them correctly.
 Sometimes you aren't given a markdown table and instead you
 get a csv or a tsv.
 
-markdown-tables.nvim will format them for you. Just
-select the text and call the command to create the 
+markdown-tables.nvim will format them for you.
+Select the text and call the command to create the 
 table in the desired format.
 
+https://github.com/user-attachments/assets/9bee3d48-d1db-4f21-a19b-b8fc893d7488
 
-https://github.com/user-attachments/assets/17fd2377-5317-48fb-a5eb-1b0b3f6f54dc
+You can also use it to format a valid, but messy markdown table.
+
+https://github.com/user-attachments/assets/74caf750-051b-46a7-a1c9-9d9e021b5580
+
 
 ## Usage
 
