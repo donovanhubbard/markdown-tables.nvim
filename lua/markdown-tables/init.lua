@@ -1,105 +1,49 @@
-local function padString(str, left_spaces, right_spaces)
-    left_spaces = left_spaces or 0
-    right_spaces = right_spaces or 0
+local renderMarkdown = require("markdown-tables.markdown")
+local renderCSV = require("markdown-tables.csv")
+local renderTSV = require("markdown-tables.tsv")
+local readTable = require("markdown-tables.read")
 
-    local left_padding = string.rep(" ", left_spaces)
-    local right_padding = string.rep(" ", right_spaces)
 
-    return left_padding .. str .. right_padding
+local function createMarkdownTable(args)
+   local buffer = vim.api.nvim_get_current_buf()
+   local t = readTable(buffer,args)
+
+   if t == nil then
+     return
+   end
+
+   local content = renderMarkdown(t)
+   vim.api.nvim_buf_set_lines(buffer,args.line1-1,args.line2,false,content)
 end
 
-local function build2DArray(lines)
-  local array = {}
-  for i=1, #lines, 1 do
-    local cells = {}
-    for cell in lines[i]:gmatch("[^|]+") do
-      table.insert(cells, cell)
-    end
-    table.insert(array,cells)
-  end
-  return array
+local function createCSVTable(args)
+   local buffer = vim.api.nvim_get_current_buf()
+   local t = readTable(buffer,args)
+
+   if t == nil then
+     return
+   end
+
+   local content = renderCSV(t)
+   vim.api.nvim_buf_set_lines(buffer,args.line1-1,args.line2,false,content)
 end
 
-local function renderTable(array)
-  local content = {}
+local function createTSVTable(args)
+   local buffer = vim.api.nvim_get_current_buf()
+   local t = readTable(buffer,args)
 
-  for i=1, #array, 1 do
-    local line = ""
-    for j=1, #array[i], 1 do
-      line = line.."|"..array[i][j]
-    end
-    line = line.."|"
-    table.insert(content,line)
-  end
-  return content
-end
+   if t == nil then
+     return
+   end
 
-local function trim(str)
-  if str == nil then
-    return nil
-  end
-  return str:match("^%s*(.-)%s*$")
-end
-
-local function getMaxWidth(array, col)
-  local maxWidth = 0
-  for _, v in pairs(array) do
-    local cell = v[col]
-    local trimmedCell = trim(cell)
-    if trimmedCell ~= nil then
-      local size = trimmedCell:len()
-      if trimmedCell:sub(1,1) ~= '-' then
-        if size > maxWidth then
-          maxWidth = size
-        end
-      end
-    end
-  end
-  return maxWidth
-end
-
-local function formatColumn(array, col)
-  local maxWidth = getMaxWidth(array, col)
-  for _, v in pairs(array) do
-    local cell = v[col]
-    local trimmedCell = trim(cell)
-    if trimmedCell == nil then
-      trimmedCell = ""
-    end
-
-    if trimmedCell:sub(1,1) == '-' then
-      local border = ""
-      for _=1,maxWidth,1 do
-        border = border .. "-"
-      end
-      trimmedCell = border
-    end
-
-    local paddedCell = padString(trimmedCell,1,maxWidth-trimmedCell:len()+1)
-    v[col]=paddedCell
-  end
-end
-
-local function formatRange(content)
-  local array = build2DArray(content)
-
-  local numOfCol = #array[1]
-
-  for i=1, numOfCol, 1 do
-    formatColumn(array, i)
-  end
-
-  return renderTable(array)
+   local content = renderTSV(t)
+   vim.api.nvim_buf_set_lines(buffer,args.line1-1,args.line2,false,content)
 end
 
 local M = {
-  FormatTable = function(args)
-    local buffer = vim.api.nvim_get_current_buf()
-    local lines = vim.api.nvim_buf_get_lines(buffer,args.line1-1,args.line2, false)
-    local content =  formatRange(lines)
-
-    vim.api.nvim_buf_set_lines(buffer,args.line1-1,args.line2,false,content)
-  end,
+  CreateMarkdownTable = createMarkdownTable,
+  CreateCSVTable = createCSVTable,
+  CreateTSVTable = createTSVTable,
 }
 
 return M
