@@ -1,13 +1,12 @@
-
--- param str: a string
--- returns: the same string without any whitespace on the front or end
+--- Removes any whitespace at the start or end of the string
+--- @param str string The string to trim
+--- @return string trimmed the trimmed string
 local function trim(str)
-  if str == nil then
-    return nil
-  end
   return str:match("^%s*(.-)%s*$")
 end
 
+--- Prints the table to the screen
+--- @param t string[][]
 local function printTable(t)
   for i=1, #t, 1 do
     for j=1, #t[i], 1 do

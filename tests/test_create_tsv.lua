@@ -14,16 +14,7 @@ local T = MiniTest.new_set({
   },
 })
 
-T['tsv'] = function()
-  child.cmd("e tests/fixtures/tsv-table-1.md")
-  child.type_keys('<shift>v', 'jjj', ":CreateTSVTable<CR>")
-  local lines = child.api.nvim_buf_get_lines(0, 0, -1, true)
-  local rightText = utils.readFileSync('./tests/fixtures/tsv-table-1.md')
-  local rightLines = utils.splitStringOnNewlines(rightText)
-  MiniTest.expect.equality(lines,rightLines)
-end
-
-T['csv'] = function()
+T['csv-1'] = function()
   child.cmd("e tests/fixtures/csv-table-1.md")
   child.type_keys('<shift>v', 'jjj', ":CreateTSVTable<CR>")
   local lines = child.api.nvim_buf_get_lines(0, 0, -1, true)
@@ -32,7 +23,16 @@ T['csv'] = function()
   MiniTest.expect.equality(lines,rightLines)
 end
 
-T['md'] = function()
+T['csv-2'] = function()
+  child.cmd("e tests/fixtures/csv-table-2.md")
+  child.type_keys('<shift>v', 'jjj', ":CreateTSVTable<CR>")
+  local lines = child.api.nvim_buf_get_lines(0, 0, -1, true)
+  local rightText = utils.readFileSync('./tests/fixtures/tsv-table-2.md')
+  local rightLines = utils.splitStringOnNewlines(rightText)
+  MiniTest.expect.equality(lines,rightLines)
+end
+
+T['md-1'] = function()
   child.cmd("e tests/fixtures/markdown-table-1.md")
   child.type_keys('<shift>v', 'jjjj', ":CreateTSVTable<CR>")
   local lines = child.api.nvim_buf_get_lines(0, 0, -1, true)
@@ -41,11 +41,20 @@ T['md'] = function()
   MiniTest.expect.equality(lines,rightLines)
 end
 
-T['md-malformatted'] = function()
+T['md-1-malformatted'] = function()
   child.cmd("e tests/fixtures/markdown-table-1-malformatted.md")
   child.type_keys('<shift>v', 'jjjj', ":CreateTSVTable<CR>")
   local lines = child.api.nvim_buf_get_lines(0, 0, -1, true)
   local rightText = utils.readFileSync('./tests/fixtures/tsv-table-1.md')
+  local rightLines = utils.splitStringOnNewlines(rightText)
+  MiniTest.expect.equality(lines,rightLines)
+end
+
+T['md-2'] = function()
+  child.cmd("e tests/fixtures/markdown-table-2.md")
+  child.type_keys('<shift>v', 'jjjj', ":CreateTSVTable<CR>")
+  local lines = child.api.nvim_buf_get_lines(0, 0, -1, true)
+  local rightText = utils.readFileSync('./tests/fixtures/tsv-table-2.md')
   local rightLines = utils.splitStringOnNewlines(rightText)
   MiniTest.expect.equality(lines,rightLines)
 end

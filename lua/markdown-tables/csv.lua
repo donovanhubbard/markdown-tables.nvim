@@ -1,7 +1,7 @@
 
--- Converts a 2d lua table of strings into a csv table
--- param t: A 2 dimensional lua table of strings with each string representing a cell
--- returns: an array of strings
+--- Converts a 2d lua table of strings into a csv table
+--- @param t string[][]  A 2 dimensional lua table of strings with each string representing a cell
+--- @return string[] t an array of strings
 local function renderCSV(t)
   local content = {}
 

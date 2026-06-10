@@ -1,9 +1,9 @@
 local stringUtils = require("markdown-tables.string-utils")
 
--- param string: a string representing a cell of the table
--- param left_spaces: how many spaces to add to the left
--- param right_spaces: how many spaces to add to the right
--- return: a tring with the desired amount of space padding on each side
+--- @param str string a string representing a cell of the table
+--- @param left_spaces number how many spaces to add to the left
+--- @param right_spaces number how many spaces to add to the right
+--- @return string s a string with the desired amount of space padding on each side
 local function padString(str, left_spaces, right_spaces)
     left_spaces = left_spaces or 0
     right_spaces = right_spaces or 0
@@ -14,8 +14,9 @@ local function padString(str, left_spaces, right_spaces)
     return left_padding .. str .. right_padding
 end
 
--- param t: A 2 dimensional lua table of strings with each string representing a cell
--- param col: an int representing which column # to look at
+--- @param array string[][] A 2 dimensional lua table of strings with each string representing a cell
+--- @param col number an int representing which column # to look at
+--- @return number maxWidth The length of the longest cell in the table
 local function getMaxWidth(array, col)
   local maxWidth = 0
   for _, v in pairs(array) do

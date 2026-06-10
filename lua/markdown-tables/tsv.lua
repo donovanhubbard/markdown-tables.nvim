@@ -1,4 +1,5 @@
-
+--- @param t string[][]
+--- @return string[] content
 local function renderTSV(t)
   local content = {}
 
